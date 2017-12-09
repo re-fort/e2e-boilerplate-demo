@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>e2e-boilerplate-demo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <h1 class="title">e2e-boilerplate-demo</h1>
+    <div class="columns">
+      <div class="column is-6">
+        <div class="field">
+          <label class="label">Input</label>
+          <span data-e2e="text"></span>
+        </div>
+
+        <div class="field">
+          <label class="label">Textarea</label>
+          <span data-e2e="textarea"></span>
+        </div>
+
+        <div class="field">
+          <label class="label">Select</label>
+          <span data-e2e="select"></span>
+
+        </div>
+
+        <div class="field">
+          <label class="label">Radio</label>
+          <span data-e2e="radio"></span>
+        </div>
+
+        <div class="field">
+          <label class="label">Checkbox</label>
+          <span data-e2e="checkbox"></span>
+        </div>
+
+        <input type="hidden" data-e2e="finished" value="false" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const q = getQueryParameters();
+
+  document.querySelector('[data-e2e="text"]').innerText = q.i;
+  document.querySelector('[data-e2e="textarea"]').innerText = q.t;
+  document.querySelector('[data-e2e="select"]').innerText = q.s;
+  document.querySelector('[data-e2e="radio"]').innerText = q.r;
+  document.querySelector('[data-e2e="checkbox"]').innerText = q.c;
+  document.querySelector('[data-e2e="finished"]').value = 'true';
+
+  function getQueryParameters() {
+    let search = location.search;
+    let q = {};
+    if (!search.includes('?')) return q;
+
+    let params = search.split('?');
+    if (params.length === 1) return q;
+    params = params[1].split('&');
+    for (const param of params) {
+      const [key, value] = param.split('=');
+      q[key] = value;
+    }
+
+    return q;
+  }
+
+</script>
+</body>
+</html>

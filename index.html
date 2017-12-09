@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>e2e-boilerplate-demo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <h1 class="title">e2e-boilerplate-demo</h1>
+    <div class="columns">
+      <div class="column is-6">
+        <div class="field">
+          <label class="label">Input</label>
+          <div class="control">
+            <input class="input" type="text" data-e2e="text" placeholder="Text input">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Textarea</label>
+          <div class="control">
+            <textarea class="textarea" data-e2e="textarea" placeholder="Textarea"></textarea>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Select</label>
+          <div class="control">
+            <div class="select">
+              <select data-e2e="select">
+                <option value="1">option 1</option>
+                <option value="2">option 2</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Radio</label>
+          <div class="control">
+            <label class="radio">
+              <input type="radio" name="question" data-e2e="radio" value="1" checked>
+              Yes
+            </label>
+            <label class="radio">
+              <input type="radio" name="question" data-e2e="radio" value="2">
+              No
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Checkbox</label>
+          <div class="control">
+            <label class="checkbox">
+              <input type="checkbox" data-e2e="checkbox" value="1">
+              I agree to the <a href="#">terms and conditions</a>
+            </label>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-link" data-e2e="form" onclick="submit()">Submit</button>
+          </div>
+          <div class="control">
+            <button class="button is-text">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function submit() {
+  const text = document.querySelector('[data-e2e="text"]').value;
+  const textarea = document.querySelector('[data-e2e="textarea"]').value;
+  const select = document.querySelector('[data-e2e="select"]').value;
+  const radio = document.querySelector('[data-e2e="radio"]:checked').value;
+  const checkbox = document.querySelector('[data-e2e="checkbox"]:checked') ? document.querySelector('[data-e2e="checkbox"]:checked').value : "0";
+
+  const url = `./result.html?i=${text}&t=${textarea}&s=${select}&r=${radio}&c=${checkbox}`;
+  location.href = url;
+}
+</script>
+</body>
+</html>
